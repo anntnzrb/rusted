@@ -1,0 +1,35 @@
+name: Nix Flake Update
+
+on:
+  workflow_dispatch: # manual triggering
+  #schedule:
+  #  - cron: "0 0 * * 0" # Sundays @ 00:00
+
+permissions:
+  contents: write
+
+jobs:
+  flake-update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+
+      - name: Configure Git
+        run: |
+          git config user.name 'github-actions'
+          git config user.email 'actions@github.com'
+
+      - name: Update Flake Inputs
+        run: |
+          nix flake update --commit-lock-file || exit 1
+          git commit -m "chore(flake): bump inputs" flake.lock || :
+
+      - name: Push Updates
+        run: |
+          git pull --rebase --autostash
+          git push
