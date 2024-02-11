@@ -47,13 +47,14 @@
             ];
           };
 
-          packages = [
-            pkgs.just
-            config.treefmt.build.wrapper
-          ];
+          packages = with pkgs; [
+            bacon
+            just
+          ] ++ [ config.treefmt.build.wrapper ];
 
           env = {
-            RUST_BACKTRACE = 1;
+            RUST_BACKTRACE = "full";
+            RUST_LIB_BACKTRACE = "full";
           };
         };
 

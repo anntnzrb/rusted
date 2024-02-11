@@ -15,6 +15,10 @@ clean:
 run *ARGS:
     cargo run --quiet -- {{ARGS}}
 
-# 'cargo watch' (auto-recompiles)
-watch *ARGS:
-    cargo watch --exec "run --quiet -- {{ARGS}}"
+# watch project
+watch:
+    bacon --job run
+
+# release build
+release:
+    cargo build --quiet --release

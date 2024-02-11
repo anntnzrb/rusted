@@ -1,4 +1,5 @@
 use clap::Parser;
+use color_eyre::eyre::Result;
 
 #[derive(Parser, Debug)]
 #[clap(author = "anntnzrb", version)]
@@ -11,15 +12,21 @@ struct Args {
     thing: Option<String>,
 }
 
-fn main() {
+fn do_something() {
     let args = Args::parse();
 
     if args.woo {
-        println!("Easter egg?\n\t-> {args:?}");
+        todo!("Easter egg?\n\t-> {args:?}");
     }
 
-    match args.thing {
-        Some(x) => println!("I... {x}?"),
-        None => println!("I am using... Nix!"),
-    }
+    args.thing
+        .map_or_else(|| println!("I am using... Nix!"), |x| println!("I... {x}?"));
+}
+
+fn main() -> Result<()> {
+    color_eyre::install()?;
+
+    do_something();
+
+    Ok(())
 }
