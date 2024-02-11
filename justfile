@@ -19,6 +19,10 @@ run *ARGS:
 watch:
     bacon --job run
 
+# run clippy lints
+clippy:
+    bacon --job clippy
+
 # release build
 release:
     cargo build --quiet --release
