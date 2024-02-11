@@ -1,9 +1,12 @@
 {
-  description = "Description for the project";
+  description = "A Rust project template using Nix.";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    devenv.url = "github:cachix/devenv";
+    devenv = {
+      url = "github:cachix/devenv";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -27,6 +30,11 @@
         devenv.shells.default = {
           name = "rusted";
 
+          env = {
+            RUST_BACKTRACE = "full";
+            RUST_LIB_BACKTRACE = "full";
+          };
+
           languages = {
             nix.enable = true;
 
@@ -35,6 +43,11 @@
               channel = "nixpkgs";
             };
           };
+
+          packages = with pkgs; [
+            bacon
+            just
+          ] ++ [ config.treefmt.build.wrapper ];
 
           devcontainer = {
             enable = true;
@@ -45,16 +58,6 @@
               "swellaby.rust-pack"
               "skellock.just"
             ];
-          };
-
-          packages = with pkgs; [
-            bacon
-            just
-          ] ++ [ config.treefmt.build.wrapper ];
-
-          env = {
-            RUST_BACKTRACE = "full";
-            RUST_LIB_BACKTRACE = "full";
           };
         };
 
