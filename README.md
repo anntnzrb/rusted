@@ -9,7 +9,7 @@ Based off:
 
 ## Try Without Installing
 
-``` sh
+```sh
 nix run github:anntnzrb/rusted
 # or
 nix run github:anntnzrb/rusted -- foo
