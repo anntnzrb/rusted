@@ -7,6 +7,16 @@ Based off:
 - [rust-nix-template](https://github.com/srid/rust-nix-template).
 - [devenv](https://devenv.sh)
 
+## Try Without Installing
+
+``` sh
+nix run github:anntnzrb/rusted
+# or
+nix run github:anntnzrb/rusted -- foo
+# or
+nix run github:anntnzrb/rusted -- -z baz
+```
+
 ## Features
 
 ### LSP
