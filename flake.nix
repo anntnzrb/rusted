@@ -27,9 +27,24 @@
         devenv.shells.default = {
           name = "rusted";
 
-          languages.rust = {
+          languages = {
+            nix.enable = true;
+
+            rust = {
+              enable = true;
+              channel = "nixpkgs";
+            };
+          };
+
+          devcontainer = {
             enable = true;
-            channel = "nixpkgs";
+
+            settings.customizations.vscode.extensions = [
+              "mkhl.direnv"
+              "pinage404.nix-extension-pack"
+              "swellaby.rust-pack"
+              "skellock.just"
+            ];
           };
 
           packages = [
@@ -47,6 +62,7 @@
           programs = {
             nixpkgs-fmt.enable = true;
             rustfmt.enable = true;
+            prettier.enable = true;
           };
         };
       };
