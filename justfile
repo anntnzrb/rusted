@@ -1,16 +1,17 @@
+# prints this menu
 default:
     @just --list
 
-# Auto-format source tree
+# format source tree
 fmt:
     treefmt
 
-# 'cargo run'
+# clean project via 'cargo clean'
 clean:
     cargo clean
     cargo clean --release
 
-# 'cargo run'
+# run project via 'cargo run'
 run *ARGS:
     cargo run --quiet -- {{ARGS}}
 
