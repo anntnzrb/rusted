@@ -67,17 +67,6 @@
             config.treefmt.build.wrapper
           ];
 
-          devcontainer = {
-            enable = true;
-
-            settings.customizations.vscode.extensions = [
-              "mkhl.direnv"
-              "pinage404.nix-extension-pack"
-              "swellaby.rust-pack"
-              "skellock.just"
-            ];
-          };
-
           enterShell = ''
             cat <<EOF
 
