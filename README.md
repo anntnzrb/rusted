@@ -1,4 +1,4 @@
-# rusted
+# Rust Project Tempate using Nix
 
 Personal template for Rust projects using Nix.
 
@@ -21,7 +21,7 @@ nix run github:anntnzrb/rusted -- -z baz
 
 ### LSP
 
-First-class support for [rust-analyzer](https://rust-analyzer.github.io/).
+First-class support for [rust-analyzer](https://rust-analyzer.github.io).
 Working with any editor that supports LSP, such as Emacs, Vim, etc.
 is trivial.
 
