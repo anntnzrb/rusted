@@ -77,6 +77,15 @@
               "skellock.just"
             ];
           };
+
+          enterShell = ''
+            cat <<EOF
+
+              🦀 Get started: 'just <recipe>'
+              `just`
+
+            EOF
+          '';
         };
 
         treefmt.config = {
